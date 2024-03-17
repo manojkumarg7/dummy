@@ -37,7 +37,7 @@ const TodoList = () => {
   };
   return (
     <div>
-      {list.length===0 && <h1>There is no item</h1>}
+      {list.length === 0 && <h1>There is no item</h1>}
       <form>
         <input
           type="text"
@@ -48,7 +48,7 @@ const TodoList = () => {
           onChange={handleChnageItem}
         />
         <button type="submit" onClick={handleClickAdd}>
-          Add
+          Add +
         </button>
       </form>
       <ul>
