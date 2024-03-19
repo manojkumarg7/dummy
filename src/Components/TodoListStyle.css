@@ -1,3 +1,71 @@
 * {
-  color: red;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: gray;
+}
+.wrapper {
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-around;
+}
+.input-item {
+  width: 300px;
+  height: 40px;
+  text-align: center;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid blue;
+  color: white;
+}
+.input-item::placeholder {
+  color: white;
+}
+.buttons {
+  width: 90px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid blue;
+  background-color: blue;
+  color: white;
+}
+.user-info {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+  color: white;
+}
+.lists {
+  font-size: 30px;
+  color: white;
+  padding-top: 10px;
+}
+.item_name {
+  width: 100%;
+  word-break: break-all;
+}
+.btn {
+  width: 50px;
+  height: 35px;
+  margin-left: 5px;
+  background-color: rgb(12, 70, 70);
+  outline: none;
+  color: white;
+}
+ol {
+  padding-left: 40px;
+}
+@media (max-width: 512px) {
+  .input-item {
+    width: 250px;
+    height: 40px;
+  }
+  .buttons {
+    width: 50px;
+    height: 40px;
+  }
+  .user-info {
+    margin-top: 20%;
+    font-size: small;
+  }
 }

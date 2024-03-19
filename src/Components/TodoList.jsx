@@ -6,6 +6,10 @@ const TodoList = () => {
     text: "",
     id: "",
   });
+  const [editingItem, setEditingItem] = useState({
+    id: "",
+    isEditing: false,
+  });
   const handleChnageItem = (e) => {
     console.log(e.target.value);
     setItems({
@@ -35,35 +39,84 @@ const TodoList = () => {
     console.log(newTodos);
     setList(newTodos);
   };
+  const changeEditText = (id) => {
+    console.log(id);
+    setEditingItem({
+      ...editingItem,
+      id: id,
+      isEditing: true,
+    });
+    let editableItem = list.find((eachItem) => eachItem.id === id);
+    console.log(editableItem);
+    setItems({
+      ...MessageChannel,
+      text: editableItem.text,
+      id: editableItem.id,
+    });
+    console.log(editableItem);
+  };
   return (
     <div>
-      {list.length === 0 && <h1>There is no item</h1>}
+      <h1 style={{ textAlign: "center", color: "pink" }}>TO-DO-LIST</h1>
       <form>
-        <input
-          type="text"
-          name="item"
-          placeholder="Enter items"
-          id="item"
-          value={items.text}
-          onChange={handleChnageItem}
-        />
-        <button type="submit" onClick={handleClickAdd}>
-          Add +
-        </button>
+        <div className="wrapper">
+          <div>
+            <input
+              className="input-item"
+              type="text"
+              name="item"
+              placeholder="Please enter your items..."
+              id="item"
+              value={items.text}
+              onChange={handleChnageItem}
+            />
+          </div>
+          <div>
+            {editingItem.isEditing ? (
+              <button
+                className="buttons"
+                type="submit"
+                onClick={handleClickAdd}
+              >
+                edit
+              </button>
+            ) : (
+              <button
+                className="buttons"
+                type="submit"
+                onClick={handleClickAdd}
+              >
+                Add
+              </button>
+            )}
+          </div>
+        </div>
       </form>
-      <ul>
+      {list.length === 0 && (
+        <h1 className="user-info">Oops! There is no item please add...</h1>
+      )}
+
+      <ol>
         {list.map((itemsList, index) => {
           return (
-            <li key={index}>
-              <span> {itemsList.text}</span>
-              <button>edit</button>
-              <button onClick={() => handleClickDelete(itemsList.id)}>
+            <li className="lists" key={index}>
+              <span className="item_name"> {itemsList.text}</span>
+              <button
+                className="btn"
+                onClick={() => changeEditText(itemsList.id)}
+              >
+                edit
+              </button>
+              <button
+                className="btn"
+                onClick={() => handleClickDelete(itemsList.id)}
+              >
                 delete
               </button>
             </li>
           );
         })}
-      </ul>
+      </ol>
     </div>
   );
 };
