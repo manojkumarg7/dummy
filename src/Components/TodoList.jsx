@@ -55,6 +55,28 @@ const TodoList = () => {
     });
     console.log(editableItem);
   };
+  const handleEdit = (e) => {
+    e.preventDefault();
+    let newTodoss = list.map((value, i) => {
+      if (value.id === editingItem.id) {
+        return {
+          text: items.text,
+          id: editingItem.id,
+        };
+      } else {
+        return value;
+      }
+    });
+    setList(newTodoss);
+    setItems({
+      text: "",
+      id: "",
+    });
+    setEditingItem({
+      text: "",
+      isEditing: false,
+    });
+  };
   return (
     <div>
       <h1 style={{ textAlign: "center", color: "pink" }}>TO-DO-LIST</h1>
@@ -73,11 +95,7 @@ const TodoList = () => {
           </div>
           <div>
             {editingItem.isEditing ? (
-              <button
-                className="buttons"
-                type="submit"
-                onClick={handleClickAdd}
-              >
+              <button className="buttons" type="submit" onClick={handleEdit}>
                 edit
               </button>
             ) : (
